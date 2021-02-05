@@ -1,0 +1,42 @@
+﻿<Window x:Class="Crash_Helper.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Crash_Helper"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Margin="5" Grid.Row="0" Grid.Column="0">Executable:</TextBlock>
+        <TextBox Margin="5" Grid.Row="0" Grid.Column="1" Text="{Binding Executable, Mode=TwoWay}" IsEnabled="{Binding IsNotRunning, Mode=TwoWay}"></TextBox>
+        <Button Margin="5" Grid.Row="0" Grid.Column="2" Click="BrowseButton_Click" IsEnabled="{Binding IsNotRunning, Mode=OneWay}">Browse...</Button>
+        
+        <TextBlock Margin="5" Grid.Row="1" Grid.Column="0">Arguments:</TextBlock>
+        <TextBox Margin="5" Grid.Row="1" Grid.Column="1" Text="{Binding Arguments, Mode=TwoWay}" IsEnabled="{Binding IsNotRunning, Mode=TwoWay}"></TextBox>
+
+        <TextBlock Margin="5" Grid.Row="2" Grid.Column="0">Working Directory:</TextBlock>
+        <TextBox Margin="5" Grid.Row="2" Grid.Column="1" Text="{Binding WorkingPath, Mode=TwoWay}" IsEnabled="{Binding IsNotRunning, Mode=TwoWay}"></TextBox>
+
+        <TextBox Margin="10" AcceptsReturn="True" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" VerticalScrollBarVisibility="Auto"
+                 Text="{Binding Output, Mode=TwoWay}" IsReadOnly="True" TextWrapping="Wrap"
+                 ></TextBox>
+
+        <Button Margin="5" Grid.Row="4"  Grid.Column="0" Click="StopButton_Click" IsEnabled="{Binding IsRunning, Mode=TwoWay}">Stop</Button>
+        <Button Margin="5" Grid.Row="4"  Grid.Column="2" Click="RunButton_Click" IsEnabled="{Binding IsNotRunning, Mode=TwoWay}">Run</Button>
+        
+    </Grid>
+</Window>
